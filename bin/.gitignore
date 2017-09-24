@@ -1,0 +1,8 @@
+**/*.class
+**/target
+**/test-output
+.classpath
+.project
+.settings
+.springBeans
+/target/

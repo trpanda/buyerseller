@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="1543" started-at="2017-05-12T17:30:22Z" finished-at="2017-05-12T17:30:24Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="1543" started-at="2017-05-12T17:30:22Z" finished-at="2017-05-12T17:30:24Z">
+      <class name="com.ge.edge.gateway.controller.GatewayControllerTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.ge.edge.gateway.controller.GatewayControllerTest@28ac3dc3]" name="setup" is-config="true" duration-ms="1385" started-at="2017-05-12T10:30:22Z" finished-at="2017-05-12T10:30:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="testFileUploadWithNoNext()[pri:0, instance:com.ge.edge.gateway.controller.GatewayControllerTest@28ac3dc3]" name="testFileUploadWithNoNext" duration-ms="142" started-at="2017-05-12T10:30:23Z" finished-at="2017-05-12T10:30:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFileUploadWithNoNext -->
+      </class> <!-- com.ge.edge.gateway.controller.GatewayControllerTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

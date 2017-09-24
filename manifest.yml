@@ -1,0 +1,10 @@
+---
+applications:
+- name: buyerseller
+  path: target/buyerseller-1.0.0.jar
+  instances: 2
+  memory: 4G
+  
+  env:
+    LOG_LEVEL: INFO
+    VERSION: none

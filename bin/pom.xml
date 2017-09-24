@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ge</groupId>
+    <artifactId>edge-gateway</artifactId>
+    <version>1.0.0</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.0.RELEASE</version>
+    </parent>
+
+    <properties>
+        <spring-data-releasetrain.version>Gosling-RC1</spring-data-releasetrain.version>
+        <grpc.version>1.1.0-SNAPSHOT</grpc.version>
+        <java.version>1.8</java.version>
+        <tokenlib.version>3.0.0</tokenlib.version>
+        <spring.security.oauth2.version>2.0.5.RELEASE</spring.security.oauth2.version>
+        <spring.cloud.version>1.0.3.RELEASE</spring.cloud.version>
+        <testng.version>6.9.6</testng.version>
+        <org.json.version>20140107</org.json.version>
+        <json.path.assert.version>1.2.0</json.path.assert.version>
+        <jackson.coreutils.version>1.8</jackson.coreutils.version>
+        <springfox.swagger.version>2.6.1</springfox.swagger.version>
+        <swagger.annotations>1.5.0</swagger.annotations>
+        <modelmapper.version>0.7.5</modelmapper.version>
+        <default.dm.appname></default.dm.appname>
+        <dm.appname></dm.appname>
+        <cf.domain>grc-apps.svc.ice.ge.com</cf.domain>
+        <httpclient.version>4.5.1</httpclient.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+            <version>1.2.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <!-- <version>1.10.27-GE</version> -->
+            <version>1.10.55</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-sts</artifactId>
+            <version>1.10.27</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.grpc/grpc-all -->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-all</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ge.dspmicro</groupId>
+            <artifactId>cloud-device-common</artifactId>
+            <version>1.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>4.3.2.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>4.3.2.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <!-- <dependency> <groupId>com.google.code.gson</groupId> <artifactId>gson</artifactId> 
+            <version>2.5</version> </dependency> -->
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1201-jdbc41</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+
+            <exclusions>
+                <exclusion>
+                    <artifactId>hibernate-entitymanager</artifactId>
+                    <groupId>org.hibernate</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-client</artifactId>
+            <version>9.2.11.v20150529</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>1.4.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fge</groupId>
+            <artifactId>jackson-coreutils</artifactId>
+            <version>${jackson.coreutils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>3.2.1</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.3.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.190</version><!--$NO-MVN-MAN-VER$ -->
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>1.2.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-spring-service-connector</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-cloudfoundry-connector</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.annotations}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path-assert</artifactId>
+            <version>${json.path.assert.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openjpa</groupId>
+            <artifactId>openjpa</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>jquery</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.3.2.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.2.RELEASE</version>
+         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <!-- end::tests[] -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>        
+        <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-redis</artifactId>
+        </dependency>        
+    </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.openjpa</groupId>
+                        <artifactId>openjpa-maven-plugin</artifactId>
+                        <version>2.4.0</version>
+                        <configuration>
+                            <includes>**/*.entity/*.class</includes>
+                            <addDefaultConstructor>true</addDefaultConstructor>
+                            <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>enhancer</id>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>enhance</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.openjpa</groupId>
+                                <artifactId>openjpa</artifactId>
+                                <!-- set the version to be the same as the 
+                                    level in your runtime -->
+                                <version>2.4.0</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <UAA_URL>https://77f263ce-67e4-4834-b4e6-3353c374e252.predix-uaa-staging.grc-apps.svc.ice.ge.com</UAA_URL>
+                                <CLIENT_ID>foo</CLIENT_ID>
+                                <CLIENT_SECRET>fooo</CLIENT_SECRET>
+                                <ZAC_CLIENT_ID>zac-device-management-client</ZAC_CLIENT_ID>
+                                <ZAC_CLIENT_SECRET>barrr</ZAC_CLIENT_SECRET>
+                                <ZAC_URL>https://zac.com</ZAC_URL>
+                                <ZAC_ZONE_ID>hello-zone</ZAC_ZONE_ID>
+                                <ZAC_UAA_URL_TOKEN>https://uaa-staging/oauth/token</ZAC_UAA_URL_TOKEN>
+                                <USE_ZONE_ID_HEADER>false</USE_ZONE_ID_HEADER>
+                                <TENANT_ZONE_ID>edge-default</TENANT_ZONE_ID>
+                                <EM_TENANT_SERVICE_URL>https://em-tenant.grc-apps.svc.ice.ge.com</EM_TENANT_SERVICE_URL>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <argLine></argLine>
+                            <systemPropertyVariables>
+                                <UAA_URL>https://77f263ce-67e4-4834-b4e6-3353c374e252.predix-uaa-staging.grc-apps.svc.ice.ge.com</UAA_URL>
+                                <DEVICE_MANAGEMENT_URL>http://localhost:8181</DEVICE_MANAGEMENT_URL>
+                                <SERVICE_URL>http://localhost:8181/v1</SERVICE_URL>
+                                <WEBHOOK_URL>http://localhost:8181</WEBHOOK_URL>
+                                <USE_ZONE_ID_HEADER>true</USE_ZONE_ID_HEADER>
+                                <TENANT_ZONE_ID>edge-default</TENANT_ZONE_ID>
+                                <PROFILE>local</PROFILE>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>integ-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>cloud</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <UAA_URL>https://77f263ce-67e4-4834-b4e6-3353c374e252.predix-uaa-staging.grc-apps.svc.ice.ge.com</UAA_URL>
+                                <CLIENT_SECRET>fooo</CLIENT_SECRET>
+                                <CLIENT_ID>foo</CLIENT_ID>
+                                <ZAC_CLIENT_ID>zac-device-management-client</ZAC_CLIENT_ID>
+                                <ZAC_CLIENT_SECRET>barrr</ZAC_CLIENT_SECRET>
+                                <ZAC_URL>https://zac.com</ZAC_URL>
+                                <ZAC_ZONE_ID>hello-zone</ZAC_ZONE_ID>
+                                <ZAC_UAA_URL_TOKEN>https://uaa-staging/oauth/token</ZAC_UAA_URL_TOKEN>
+                                <USE_ZONE_ID_HEADER>false</USE_ZONE_ID_HEADER>
+                                <TENANT_ZONE_ID>edge-default</TENANT_ZONE_ID>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <argLine></argLine>
+                            <systemPropertyVariables>
+                                <UAA_URL>https://77f263ce-67e4-4834-b4e6-3353c374e252.predix-uaa-staging.grc-apps.svc.ice.ge.com</UAA_URL>
+                                <DEVICE_MANANGEMENT_URL>https://edge-default.edgemanager-int.grc-apps.svc.ice.ge.com</DEVICE_MANANGEMENT_URL>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>integ-test</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>with.clover</id>
+            <activation>
+                <property>
+                    <name>profile-name</name>
+                    <value>with.clover</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <USE_ZONE_ID_HEADER>false</USE_ZONE_ID_HEADER>
+                                <TENANT_ZONE_ID>edge-default</TENANT_ZONE_ID>
+                                <DEFAULT_TENANT_CLIENT_SECRET>fooo</DEFAULT_TENANT_CLIENT_SECRET>
+                                <UAA_URL>https://uaa.com/oauth/token</UAA_URL>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>com.atlassian.maven.plugins</groupId>
+                        <artifactId>maven-clover2-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <configuration>
+                            <systemProperties>
+                                <CLIENT_SECRET>foooo</CLIENT_SECRET>
+                                <UAA_URL>https://uaa.com/oauth/token</UAA_URL>
+                            </systemProperties>
+                            <excludes>
+
+                                <exclude>**/Application.java</exclude>
+                                <exclude>**/common/*.java</exclude>
+                                <exclude>**/config/*.java</exclude>
+                                <exclude>**/exception/*.java</exclude>
+                                <exclude>**/messaging/config/*.java</exclude>
+                                <exclude>**/persistence/config/*.java</exclude>
+                                <exclude>**/persistence/entity/*.java</exclude>
+                                <exclude>**/persistence/repo/*.java</exclude>
+                                <exclude>**/service/*Publisher.java</exclude>
+                                <exclude>**/mock/*.java</exclude>
+                                <exclude>**/consumer/*.java</exclude>
+                            </excludes>
+                            <license><![CDATA[OnqMnjALaiGeFaUporQKIeCKPnneqggdOpbvnERrufQjka
+mi2Ky<EiYJ8goiwluKsEmhH12KNEpNoIPrIyeN<782rLoQ
+PnnQxVomQRoNPrQMpnQVtNQnoOmNQPmqonsVtsmTUwUvvo
+UvxWtsUtSSoRqpRnmnmUUnptornqqmmmmmUUnptornqqmm
+mmmUU75W7ilYXiWIbpbXoZeUUnmmmm
+]]></license>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>setup-exec</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>setup</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report-exec</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>aggregate</goal>
+                                    <goal>clover</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>com.atlassian.maven.plugins</groupId>
+                        <artifactId>maven-clover2-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+
+    </profiles>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.2.5.RELEASE</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

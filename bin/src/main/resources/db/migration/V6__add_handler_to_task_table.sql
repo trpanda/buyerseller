@@ -1,0 +1,1 @@
+ALTER TABLE task ADD COLUMN app_handler VARCHAR(64);	

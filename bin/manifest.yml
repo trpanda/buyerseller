@@ -1,0 +1,40 @@
+---
+applications:
+- name: em-edgegateway
+  path: target/edge-gateway-1.0.0.jar
+  instances: 2
+  memory: 4G
+  services:
+    - em-amqp
+    - psql-eg
+    - em-redis
+  env:
+    LOG_LEVEL: INFO
+    UAA_URL: https://77f263ce-67e4-4834-b4e6-3353c374e252.predix-uaa-staging.grc-apps.svc.ice.ge.com
+    DEFAULT_TENANT_CLIENT_ID: edge-default-app-client
+    DEFAULT_TENANT_CLIENT_SECRET: edge-default-app-secret
+    TENANT_SERVICE_CLIENT_ID: em-tenant-manager
+    TENANT_SERVICE_CLIENT_SECRET: 
+    SERVICE_ID: predix-edge
+    ZAC_CLIENT_ID: zac-device-management-client
+    ZAC_CLIENT_SECRET: 
+    ZAC_UAA_URL_TOKEN: https://predix-uaa-staging.grc-apps.svc.ice.ge.com/oauth/token
+    ZAC_URL: https://zac-release.grc-apps.svc.ice.ge.com
+    SERVICE_BASE_DOMAIN: grc-apps.svc.ice.ge.com
+    NEW_RELIC_APP_NAME: device-management
+    TMS_CREDS_CLIENT_ID: zac-em-client
+    TMS_CREDS_CLIENT_SECRET: 
+    TMS_BASE_URL: tms-predix-sysint.grc-apps.svc.ice.ge.com
+    TMS_CREDS_ZAC_UAA_URL: https://predix-uaa-sysint.grc-apps.svc.ice.ge.com/oauth/token
+    EM_TENANT_SERVICE_URL: https://em-tenant.grc-apps.svc.ice.ge.com/v1/tenant
+    MEMORY_LIMIT: 2G
+    SPRING_PROFILES_ACTIVE: cloud
+    DEVICE_MGM_URL: https://edgemanager-sysint.run.aws-usw02-dev.ice.predix.io/svc/device    
+    COMMAND_URL: https://edgemanager-sysint.grc-apps.svc.ice.ge.com/svc/command
+    EDGEGATEWAY_URL: https://{subdomain}.edgemanager-sysint.grc-apps.svc.ice.ge.com/svc/gateway
+    EDGEGATEWAY_SSETIMEOUT_MILLISEC: 86400000
+    SYNC_INTERVAL_LATENCY: 15   
+    SYNC_INTERVAL_FACTOR: 0.1   
+    SYNC_SIGMA_FACTOR: 10                  
+    TASK_TIMEOUT_SYNC_RATE: 300000
+    VERSION: none

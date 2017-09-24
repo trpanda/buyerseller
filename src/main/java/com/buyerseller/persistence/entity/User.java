@@ -2,6 +2,8 @@ package com.buyerseller.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,17 +14,18 @@ import javax.persistence.Table;
 public class User
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private String    userId;
+    private Long    userId;
     @Column(name = "user_name")
     private String    userName;
     @Column(name = "user_type")
     private String    userType;
-    public String getUserId()
+    public Long getUserId()
     {
         return userId;
     }
-    public void setUserId(String userId)
+    public void setUserId(Long userId)
     {
         this.userId = userId;
     }

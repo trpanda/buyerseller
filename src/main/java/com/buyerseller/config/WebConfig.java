@@ -1,11 +1,21 @@
 package com.buyerseller.config;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import io.swagger.models.Contact;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter
@@ -42,13 +52,12 @@ public class WebConfig extends WebMvcConfigurerAdapter
     @Override
     public void addViewControllers(ViewControllerRegistry registry)
     {
-        registry.addRedirectViewController("/svc/buyerseller/apidocs/v2/api-docs", "/v2/api-docs"); //$NON-NLS-1$ //$NON-NLS-2$
+        registry.addRedirectViewController("/svc/buyerseller/apidocs/v1/api-docs", "/v1/api-docs"); //$NON-NLS-1$ //$NON-NLS-2$
         registry.addRedirectViewController("/svc/buyerseller/apidocs/configuration/ui", "/configuration/ui"); //$NON-NLS-1$ //$NON-NLS-2$
-        registry.addRedirectViewController("/svc/buyerseller/apidocs/configuration/security", //$NON-NLS-1$
-                "/configuration/security"); //$NON-NLS-1$
+        registry.addRedirectViewController("/svc/buyerseller/apidocs/configuration/security", "/configuration/security"); //$NON-NLS-1$ //$NON-NLS-2$
         registry.addRedirectViewController("/svc/buyerseller/apidocs/swagger-resources", "/swagger-resources"); //$NON-NLS-1$ //$NON-NLS-2$
-        registry.addRedirectViewController("/svc/buyerseller/apidocs", "/svc/gateway/apidocs/swagger-ui.html"); //$NON-NLS-1$ //$NON-NLS-2$
-        registry.addRedirectViewController("/svc/buyerseller/apidocs/", "/svc/gateway/apidocs/swagger-ui.html"); //$NON-NLS-1$ //$NON-NLS-2$
+        registry.addRedirectViewController("/svc/buyerseller/apidocs", "/svc/buyerseller/apidocs/swagger-ui.html"); //$NON-NLS-1$ //$NON-NLS-2$
+        registry.addRedirectViewController("/svc/buyerseller/apidocs/", "/svc/buyerseller/apidocs/swagger-ui.html"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     /*

@@ -1,5 +1,6 @@
 package com.buyerseller.rest.api.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import io.swagger.annotations.ApiModel;
@@ -12,7 +13,10 @@ public class ProjectModel
     private String projectName ;
     private String projectDesc;
     private Timestamp expiryDateTime;
+    private boolean isExpired ;
+    private Long winnerId = 0l;
     private Long sellerId = 0l;
+    private BigDecimal winnerBidValue;
     public Long getProjectId()
     {
         return projectId;
@@ -54,7 +58,25 @@ public class ProjectModel
         this.sellerId = buyerId;
     }
   
-    @Override
+    public boolean isExpired() {
+		return isExpired;
+	}
+	public void setExpired(boolean isExpired) {
+		this.isExpired = isExpired;
+	}
+	public Long getWinnerId() {
+		return winnerId;
+	}
+	public void setWinnerId(Long winnerId) {
+		this.winnerId = winnerId;
+	}
+	public BigDecimal getWinnerBidValue() {
+		return winnerBidValue;
+	}
+	public void setWinnerBidValue(BigDecimal winnerBidValue) {
+		this.winnerBidValue = winnerBidValue;
+	}
+	@Override
     public int hashCode()
     {
         final int prime = 31;

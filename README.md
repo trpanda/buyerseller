@@ -38,4 +38,56 @@ USER_ID  	USER_NAME  	USER_TYPE
 23			bidder19		2
 24			bidder20		2
 
+Sample Payload Project:
+
+{"projectId":0,"projectName":"prjectOne","projectDesc":null,"expiryDateTime":1506272586318,"winnerId":0,"sellerId":1,"winnerBidValue":null,"expired":false}
+
+Sample Payload Bid:
+
+{"bidId":5,"projectId":1,"projectName":null,"bidderName":null,"bidUserId":0,"rank":-1,"bidValue":10}
+
+Sample Curl Command:-
+
+1) Create a Project:
+
+curl -X PATCH \
+  http://localhost:8080/v1/project \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'user_id: 1' \
+  -d '{"projectName":"projectNewTest","projectDesc":null,"expiryDateTime":1506295441806,"winnerId":0,"sellerId":1,"winnerBidValue":null,"expired":false}'
+  
+  2) Get Project Details
+  
+  curl -X GET \
+  http://localhost:8080/v1/project7 \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'user_id: 1' 
+
+   3) Update Project : Extend Expiry Time
+   
+   curl -X PATCH \
+  http://localhost:8080/v1/project \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'user_id: 1' \
+  -d '{projectId:"7",projectName":"projectNewTest","projectDesc":null,"expiryDateTime":1506295451806,"winnerId":0,"sellerId":1,"winnerBidValue":null,"expired":false}'
+  
+  4) Bid for The Project
+  
+  curl -X POST \
+  http://localhost:8080/v1/bid/7 \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'user_id: 5' \
+  -d '{"bidId":0,"projectId":7,"projectName":null,"bidderName":null,"bidUserId":8,"rank":-1,"bidValue":30}'
+  
+  5) After Expiry Get Project Details Again To See Which user is winner and winning bid value
+  
+  curl -X GET \
+  http://localhost:8080/v1/project7 \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'user_id: 1'  
 

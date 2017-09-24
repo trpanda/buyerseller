@@ -1,10 +1,13 @@
 package com.buyerseller.common;
 
 import java.io.IOException;
-
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import org.springframework.stereotype.Component;
 
+import com.buyerseller.rest.api.model.BidModel;
+import com.buyerseller.rest.api.model.ProjectModel;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;

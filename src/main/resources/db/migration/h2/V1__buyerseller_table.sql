@@ -1,5 +1,3 @@
-
-
 CREATE TABLE project_user (
                        user_id BIGSERIAL PRIMARY KEY, 
 					   user_name VARCHAR(255), 
@@ -25,6 +23,7 @@ CREATE TABLE bid (
 insert into project_user (user_name,user_type) values('seller1',1);
 insert into project_user (user_name,user_type) values('seller2',1);
 insert into project_user (user_name,user_type) values('seller3',1);
+insert into project_user (user_name,user_type) values('seller4',1);
 
 insert into project_user (user_name,user_type) values('bidder1',2);
 insert into project_user (user_name,user_type) values('bidder2',2);
@@ -36,3 +35,13 @@ insert into project_user (user_name,user_type) values('bidder7',2);
 insert into project_user (user_name,user_type) values('bidder8',2);
 insert into project_user (user_name,user_type) values('bidder9',2);
 insert into project_user (user_name,user_type) values('bidder10',2);
+insert into project_user (user_name,user_type) values('bidder11',2);
+insert into project_user (user_name,user_type) values('bidder12',2);
+insert into project_user (user_name,user_type) values('bidder13',2);
+insert into project_user (user_name,user_type) values('bidder14',2);
+insert into project_user (user_name,user_type) values('bidder15',2);
+insert into project_user (user_name,user_type) values('bidder16',2);
+insert into project_user (user_name,user_type) values('bidder17',2);
+insert into project_user (user_name,user_type) values('bidder18',2);
+insert into project_user (user_name,user_type) values('bidder19',2);
+insert into project_user (user_name,user_type) values('bidder20',2);

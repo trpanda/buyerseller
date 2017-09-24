@@ -4,9 +4,10 @@ instructions
 1) download buyerseller project
 2) from main directory Run mvn clean package
 3)Then execute ./start.sh to start the server
-4) Use any rest client tool such as PostMan to access rest endpoints
+4) Use any rest client tool such as PostMan or curl command to access rest endpoints
+5) This project uses in memory h2 database , hence no need to install any databases for this application.
 
-Use http://localhost:8080/svc/buyerseller/v1 as base rest url
+Use http://localhost:8080/v1 as base rest url
 
 This rest application does not provide any user authentication mechanism.
 Instead Use http header User_Id in each rest call to indicate which user is bidding or posting project.
@@ -44,7 +45,7 @@ Sample Payload Project:
 
 Sample Payload Bid:
 
-{"bidId":5,"projectId":1,"projectName":null,"bidderName":null,"bidUserId":0,"rank":-1,"bidValue":10}
+{"projectId":1,"projectName":null,"bidderName":null,"bidUserId":0,"rank":-1,"bidValue":10}
 
 Sample Curl Command:-
 

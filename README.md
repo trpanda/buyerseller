@@ -41,7 +41,7 @@ USER_ID  	USER_NAME  	USER_TYPE
 
 Sample Payload Project:
 
-{"projectId":0,"projectName":"prjectOne","projectDesc":null,"expiryDateTime":1506272586318,"winnerId":0,"sellerId":1,"winnerBidValue":null,"expired":false}
+{"projectId":0,"projectName":"prjectOne","projectDesc":null,"expiryDateTime":1506304505977,"top3Bids":[],"sellerId":1,"expired":false}
 
 Sample Payload Bid:
 
@@ -56,7 +56,7 @@ curl -X PATCH \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -H 'user_id: 1' \
-  -d '{"projectName":"projectNewTest","projectDesc":null,"expiryDateTime":1506295441806,"winnerId":0,"sellerId":1,"winnerBidValue":null,"expired":false}'
+  -d '{"projectName":"projectNewTest","projectDesc":null,"expiryDateTime":1506295441806,,"sellerId":1,"top3Bids":[],"expired":false}'
   
   2) Get Project Details
   
@@ -73,7 +73,7 @@ curl -X PATCH \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -H 'user_id: 1' \
-  -d '{projectId:"7",projectName":"projectNewTest","projectDesc":null,"expiryDateTime":1506295451806,"winnerId":0,"sellerId":1,"winnerBidValue":null,"expired":false}'
+  -d '{projectId:"7",projectName":"projectNewTest","projectDesc":null,"expiryDateTime":1506295451806,"sellerId":1,"top3Bids":[],"expired":false}'
   
   4) Bid for The Project
   

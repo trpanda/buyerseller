@@ -101,15 +101,22 @@ public class BuyerSellerService
 			ProjectModel projectModel = entityModelConverter.projectEntityToModel(project);
 			List<BidModel> list = getBidList(projectId);
 			if (list != null) {
+				projectModel.setTop3Bids(list);
+			}else {
+				
+				SortedSet<BidModel> set = bidCalculator.getTopThreeBids(project.getProjectId());
+				List<BidModel> list2 = new ArrayList<BidModel>();
+	            Object[] array = set.toArray();
+	            int rank = 0;
+	            for (Object obj : array)
+	            {
 
-				for (BidModel model : list) {
-					if (model.getRank() == 1) {
-						projectModel.setExpired(true);
-						projectModel.setWinnerId(model.getBidUserId());
-						projectModel.setWinnerBidValue(model.getBidValue());
-						return projectModel;
-					}
-				}
+	                BidModel bidData = (BidModel) obj;
+	                bidData.setProjectId(projectId);
+	                bidData.setRank(++rank);
+	                list2.add(bidData);
+	            }
+	            projectModel.setTop3Bids(list2);
 			}
 			return projectModel;
 		} catch (Exception exception) {

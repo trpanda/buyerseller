@@ -2,6 +2,10 @@ package com.buyerseller.rest.api.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import io.swagger.annotations.ApiModel;
 
@@ -14,9 +18,8 @@ public class ProjectModel
     private String projectDesc;
     private Timestamp expiryDateTime;
     private boolean isExpired ;
-    private Long winnerId = 0l;
+    private List<BidModel> top3Bids = new ArrayList<BidModel>();
     private Long sellerId = 0l;
-    private BigDecimal winnerBidValue;
     public Long getProjectId()
     {
         return projectId;
@@ -64,17 +67,12 @@ public class ProjectModel
 	public void setExpired(boolean isExpired) {
 		this.isExpired = isExpired;
 	}
-	public Long getWinnerId() {
-		return winnerId;
+
+	public List<BidModel> getTop3Bids() {
+		return top3Bids;
 	}
-	public void setWinnerId(Long winnerId) {
-		this.winnerId = winnerId;
-	}
-	public BigDecimal getWinnerBidValue() {
-		return winnerBidValue;
-	}
-	public void setWinnerBidValue(BigDecimal winnerBidValue) {
-		this.winnerBidValue = winnerBidValue;
+	public void setTop3Bids(List<BidModel> top3Bids) {
+		this.top3Bids = top3Bids;
 	}
 	@Override
     public int hashCode()

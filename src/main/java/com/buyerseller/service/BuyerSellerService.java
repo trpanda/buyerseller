@@ -80,8 +80,8 @@ public class BuyerSellerService
 		try {
 
 			projectRepository.findAll().forEach(a -> list.add(a));
-			if (list.size() > limit) {
-				return entityModelConverter.projectEntityToModelList(list.subList(0, limit));
+			if (limit !=-1 && list.size() > limit) {
+				List<ProjectModel> listModel = entityModelConverter.projectEntityToModelList(list.subList(0, limit));
 			}
 			return entityModelConverter.projectEntityToModelList(list);
 
@@ -99,29 +99,33 @@ public class BuyerSellerService
 
 			Project project = projectRepository.findOne(projectId);
 			ProjectModel projectModel = entityModelConverter.projectEntityToModel(project);
-			List<BidModel> list = getBidList(projectId);
-			if (list != null) {
-				projectModel.setTop3Bids(list);
-			}else {
-				
-				SortedSet<BidModel> set = bidCalculator.getTopThreeBids(project.getProjectId());
-				List<BidModel> list2 = new ArrayList<BidModel>();
-	            Object[] array = set.toArray();
-	            int rank = 0;
-	            for (Object obj : array)
-	            {
-
-	                BidModel bidData = (BidModel) obj;
-	                bidData.setProjectId(projectId);
-	                bidData.setRank(++rank);
-	                list2.add(bidData);
-	            }
-	            projectModel.setTop3Bids(list2);
-			}
+			populateBids(projectId, project, projectModel);
 			return projectModel;
 		} catch (Exception exception) {
 			logger.error(" GetProjectDetails failed ", exception);
 			throw new ServiceException(exception.getMessage());
+		}
+	}
+
+	private void populateBids(Long projectId, Project project, ProjectModel projectModel) {
+		List<BidModel> list = getBidList(projectId);
+		if (list != null) {
+			projectModel.setTop3Bids(list);
+		}else {
+			
+			SortedSet<BidModel> set = bidCalculator.getTopThreeBids(project.getProjectId());
+			List<BidModel> list2 = new ArrayList<BidModel>();
+		    Object[] array = set.toArray();
+		    int rank = 0;
+		    for (Object obj : array)
+		    {
+
+		        BidModel bidData = (BidModel) obj;
+		        bidData.setProjectId(projectId);
+		        bidData.setRank(++rank);
+		        list2.add(bidData);
+		    }
+		    projectModel.setTop3Bids(list2);
 		}
 	}
 
